@@ -16,7 +16,8 @@ builds:
   - CGO_ENABLED=0
 dockers:
   - image_templates:
-    - itzg/rcon-hub
+    - "itzg/rcon-hub:latest"
+    - "itzg/rcon-hub:{{ .Tag }}"
 archives:
 - replacements:
     darwin: Darwin

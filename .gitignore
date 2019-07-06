@@ -2,3 +2,5 @@
 *.iml
 /dist/
 /host_key.pem
+/rcon-hub
+/rcon-hub.exe

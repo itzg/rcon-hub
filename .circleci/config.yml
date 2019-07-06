@@ -2,7 +2,6 @@ version: 2
 
 defaults: &defaults
   docker:
-    # specify the version
     - image: circleci/golang:1.12.6
 
 jobs:
@@ -17,7 +16,7 @@ jobs:
             - cache-{{ arch }}-{{ .Branch }}
             - cache
 
-      - run: go -mod=readonly test ./...
+      - run: make test
 
       - save_cache:
           key: cache-{{ arch }}-{{ .Branch }}-{{ checksum "go.sum" }}
@@ -31,7 +30,7 @@ jobs:
 
       - setup_remote_docker
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
-      - run: curl -sL https://git.io/goreleaser | bash
+      - run: make release
 
 workflows:
   version: 2

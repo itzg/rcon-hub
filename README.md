@@ -43,7 +43,7 @@ users:
   testing:
     password: pw
 connections:
-  local-mc:
+  mc:
     address: localhost:25575
     password: minecraft
 host-key-file: host_key.pem
@@ -70,6 +70,14 @@ Rather than using the config file, the following environment variables are suppo
 - `RH_USER` : the username to register for SSH authentication. Default is `user`.
 - `RH_PASSWORD` : if specified, a user with username `$RH_USER` will be registered with the given password 
 - `RH_CONNECTION` : a space delimited list of connection definitions of the form `name=password@host:port`
+
+For example, the following starts a container with the same user and connection as the YAML file above
+
+```
+docker run -d --name rcon-hub -p 2222:2222 \
+  -e RH_USER=testing -e RH_PASSWORD=pw -e RH_CONNECTION=mc=minecraft@localhost:25575 \
+  itzg/rcon-hub
+```
 
 ## Connecting
 

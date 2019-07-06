@@ -24,13 +24,13 @@ type Shell struct {
 	config *Config
 	rw     io.ReadWriter
 
-	history *ring.Ring
+	history      *ring.Ring
 	historyShift int
-	line        []byte
-	inEsc       bool
-	inCsi       bool
-	csiSequence []byte
-	prompt      string
+	line         []byte
+	inEsc        bool
+	inCsi        bool
+	csiSequence  []byte
+	prompt       string
 }
 
 func init() {
@@ -39,9 +39,9 @@ func init() {
 
 func NewShell(rw io.ReadWriter, config *Config) *Shell {
 	return &Shell{
-		rw:     rw,
-		config: config,
-		history: ring.New(config.RingBufferSize),
+		rw:      rw,
+		config:  config,
+		history: ring.New(config.HistorySize),
 	}
 }
 

@@ -27,9 +27,9 @@ type Connection struct {
 }
 
 type Config struct {
-	RingBufferSize int `mapstructure:"ring-buffer-size"`
+	HistorySize int    `mapstructure:"history-size"`
 	HostKeyFile string `mapstructure:"host-key-file"`
-	Users map[string]User
+	Users       map[string]User
 	Connections map[string]Connection
 }
 

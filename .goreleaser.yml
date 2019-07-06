@@ -1,0 +1,39 @@
+project_name: rcon-hub
+before:
+  hooks:
+    - go mod download
+builds:
+- main: ./cmd/rcon-hub
+  binary: rcon-hub
+  goos:
+    - linux
+    - windows
+    - darwin
+  ignore:
+    - goos: darwin
+      goarch: 386
+  env:
+  - CGO_ENABLED=0
+dockers:
+  - image_templates:
+    - itzg/rcon-hub
+archives:
+- replacements:
+    darwin: Darwin
+    linux: Linux
+    windows: Windows
+    386: 32-bit
+    amd64: 64-bit
+  format_overrides:
+    - goos: windows
+      format: zip
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .ShortCommit }}-SNAPSHOT"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'

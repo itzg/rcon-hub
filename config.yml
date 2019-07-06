@@ -1,0 +1,8 @@
+users:
+  testing:
+    password: pw
+connections:
+  local-mc:
+    address: localhost:25575
+    password: minecraft
+host-key-file: host_key.pem

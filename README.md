@@ -19,6 +19,11 @@ Top-level keys of the configuration include:
 - `history-size` : Size of command history. Default is 100.
 - `bind` : the `host:port` where SSH connections are accepted. Default is `:2222`.
 
+On Windows you can generate a host key file using PuTTY Key Generator and exporting the private
+key without a password using the "Conversions > Export OpenSSH key" menu.
+
+On Linux you can generate a host key file using `ssh-keygen`.
+
 ### Users
 
 One or more users can be declared under the `users` key with a key-object entry each. 
@@ -63,8 +68,8 @@ Passing `help` or `--help` will display additional command-line options.
 
 A containerized version is provided at `itzg/rcon-hub`. It exposes the SSH port at 2222 and declares two volumes:
 - `/etc/rcon-hub` : this is where the `config.yml` file is loaded
-- `/data` : by default the container will write the host key file to `/data/host_key.pem`, but a pre-generated
-  key file can be mounted at that path
+- `/data` : by default the container will write the host key file to `/data/host_key.pem`, 
+  but a pre-generated key file can be mounted at that path
   
 Rather than using the config file, the following environment variables are supported:
 - `RH_USER` : the username to register for SSH authentication. Default is `user`.
@@ -78,6 +83,30 @@ docker run -d --name rcon-hub -p 2222:2222 \
   -e RH_USER=testing -e RH_PASSWORD=pw -e RH_CONNECTION=mc=minecraft@localhost:25575 \
   itzg/rcon-hub
 ```
+
+To ensure the generated host key persists across restarts, be sure to attach the `/data` volume,
+such as with this Docker compose file:
+
+```yaml
+version: "3.7"
+
+services:
+  rcon-hub:
+    image: itzg/rcon-hub
+    environment:
+      RH_USER: testing
+      RH_PASSWORD: pw
+      RH_CONNECTION: mc=minecraft@mc:25575
+    ports:
+      - 2222:2222
+    volumes:
+      - rcon-hub:/data
+volumes:
+  # declare volume with default volume engine
+  rcon-hub: {}
+```
+
+> A full example is located at [examples/docker-compose.yml](examples/docker-compose.yml)
 
 ## Connecting
 

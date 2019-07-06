@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  rcon-hub:
+    image: itzg/rcon-hub
+    environment:
+      RH_USER: testing
+      RH_PASSWORD: pw
+      RH_CONNECTION: mc=minecraft@mc:25575
+    ports:
+      - 2222:2222
+    volumes:
+      - rcon-hub:/data
+  mc:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    environment:
+      EULA: "TRUE"
+    volumes:
+      - mc:/data
+
+volumes:
+  # declare volume with default volume engine
+  rcon-hub: {}
+  mc: {}

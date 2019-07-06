@@ -2,6 +2,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/itzg/rcon-hub.svg)](https://github.com/itzg/rcon-hub/issues)
 [![Docker Pulls](https://img.shields.io/docker/pulls/itzg/rcon-hub.svg)](https://cloud.docker.com/u/itzg/repository/docker/itzg/rcon-hub)
 [![GitHub release](https://img.shields.io/github/release/itzg/rcon-hub.svg)](https://github.com/itzg/rcon-hub/releases)
+[![CircleCI](https://circleci.com/gh/itzg/rcon-hub.svg?style=svg)](https://circleci.com/gh/itzg/rcon-hub)
 [![Buy me a coffee](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoffee.com/itzg)
 
 Provides an SSH server that enables rcon connections to configured game servers

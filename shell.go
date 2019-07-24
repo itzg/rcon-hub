@@ -45,6 +45,8 @@ func NewShell(rw io.ReadWriter, config *Config) *Shell {
 	}
 }
 
+// Read blocks until the next line of input, such as a command, is available and returns that
+// line. The error will be io.EOF if Control-D was pressed.
 func (s *Shell) Read() (string, error) {
 	buf := make([]byte, 1)
 

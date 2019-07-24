@@ -22,8 +22,9 @@ type User struct {
 }
 
 type Connection struct {
-	Address  string
-	Password string
+	Address        string
+	Password       string
+	AutoDisconnect bool `mapstructure:"auto-disconnect"`
 }
 
 type Config struct {

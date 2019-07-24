@@ -37,6 +37,7 @@ One or more RCON connections can be declared under the `connections` key with a 
 The sub-key is the name of the connection that will be used with the hub's `connect` command. The object requires:
 - `address` : a `host:port` declaration of the RCON endpoint
 - `password` : the RCON password to authenticate with the endpoint
+- `auto-disconnect` : set to `true` if you want to disconnect from the connection when detaching
 
 ### Example
 
